@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://Scripts/World/WorldController.gd" id="1_world"]
+[ext_resource type="PackedScene" path="res://Scenes/Player.tscn" id="2_player"]
+[ext_resource type="Shader" path="res://Shaders/TerrainGrid.gdshader" id="3_grid"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/MobileControls.tscn" id="4_mobile"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/DebugHUD.tscn" id="5_debug"]
+[ext_resource type="PackedScene" path="res://Scenes/NPC/Caine.tscn" id="6_caine"]
+[ext_resource type="PackedScene" path="res://Scenes/NPC/VaizelG1Web.tscn" id="10_vaizel_g1"]
+
+[sub_resource type="Environment" id="Environment_sky"]
+background_mode = 1
+background_color = Color(0.56, 0.76, 0.94, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.82, 0.86, 0.94, 1)
+ambient_light_energy = 0.7
+reflected_light_source = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grid"]
+shader = ExtResource("3_grid")
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(200, 0.2, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(200, 0.2, 200)
+
+[sub_resource type="StandardMaterial3D" id="Material_blocks"]
+albedo_color = Color(0.65, 0.70, 0.74, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_block"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_block"]
+size = Vector3(2, 2, 2)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_world")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sky")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.88, -0.57, -0.40)
+light_color = Color(1, 0.97, 0.92, 1)
+light_energy = 1.0
+shadow_enabled = false
+
+[node name="Terrain" type="StaticBody3D" parent="." groups=["terrain"]]
+collision_layer = 1
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
+position = Vector3(0, -0.1, 0)
+mesh = SubResource("BoxMesh_floor")
+material_override = SubResource("ShaderMaterial_grid")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain"]
+position = Vector3(0, -0.1, 0)
+shape = SubResource("BoxShape3D_floor")
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="BlockA" type="StaticBody3D" parent="Obstacles" groups=["world_blocks"]]
+position = Vector3(-4, 1, -2)
+collision_layer = 1
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/BlockA"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Material_blocks")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/BlockA"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="BlockB" type="StaticBody3D" parent="Obstacles" groups=["world_blocks"]]
+position = Vector3(4, 1, -6)
+collision_layer = 1
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/BlockB"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Material_blocks")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/BlockB"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="BlockC" type="StaticBody3D" parent="Obstacles" groups=["world_blocks"]]
+position = Vector3(0, 1, -12)
+collision_layer = 1
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacles/BlockC"]
+mesh = SubResource("BoxMesh_block")
+material_override = SubResource("Material_blocks")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacles/BlockC"]
+shape = SubResource("BoxShape3D_block")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector3(0, 0.06, 6)
+
+[node name="Caine" parent="." instance=ExtResource("6_caine")]
+position = Vector3(3, 0.06, 2)
+
+[node name="VaizelG1" parent="." instance=ExtResource("10_vaizel_g1")]
+
+[node name="MobileControls" parent="." instance=ExtResource("4_mobile")]
+
+[node name="DebugHUD" parent="." instance=ExtResource("5_debug")]

@@ -1,0 +1,57 @@
+; Sandbox 3D minimalista - Godot 4.x
+; Configuracao de origem mantida em texto para facilitar auditoria.
+config_version=5
+
+[application]
+config/name="Sandbox 3D - Vaizel G1 Web Physics"
+run/main_scene="res://Scenes/World.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/handheld/orientation=0
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+
+[physics]
+3d/default_gravity=9.81
+
+[layer_names]
+3d_physics/layer_1="Mundo"
+3d_physics/layer_2="Jogador"
+3d_physics/layer_3="Caine"
+3d_physics/layer_4="Objetos interativos (reservado)"
+
+[input_devices]
+pointing/emulate_mouse_from_touch=false
+pointing/emulate_touch_from_mouse=false
+
+[input]
+move_forward={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":87)]
+}
+move_backward={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":83)]
+}
+move_left={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":65)]
+}
+move_right={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":68)]
+}
+jump={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":32)]
+}
+pause={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":4194305)]
+}

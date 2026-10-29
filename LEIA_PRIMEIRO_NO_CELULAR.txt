@@ -1,0 +1,27 @@
+VAIZEL G1 OFICIAL — ANDROID, SEM COMPUTADOR
+
+Este projeto NÃO é um APK. Não instale as versões antigas.
+
+O que ele contém:
+* Mundo original do Caine, agora com Vaizel G1 Web.
+* Código MuJoCo WebAssembly + pesos oficiais G1 ONNX (o arquivo pesado é baixado
+  pelo GitHub Actions, não está neste ZIP).
+* Cálculo real de forças nas 12 juntas das pernas, sem caminhar por animação.
+* Sincronização das poses físicas com os objetos 3D renderizados pelo Godot.
+* GitHub Actions para compilar/exportar na nuvem — sem precisar de PC.
+
+IMPORTANTE:
+Abrir GodotSandbox3D/project.godot no EDITOR NATIVO ANDROID não ativa a rede.
+Esse editor não executa a build WebAssembly de MuJoCo como plugin nativo.
+Para usar o mundo Godot + política oficial juntos, use o GitHub Actions para
+publicar a versão WEB e acesse a página gerada no navegador do seu celular.
+
+Leia GodotSandbox3D/VAIZEL_ANDROID.md para instruções e limitações.
+
+Teste imediato que JÁ existe, sem instalação (G1 oficial, sem Caine):
+https://www.humanoidrobots.training/unitree/g1
+
+O código e os testes de contrato foram verificados neste ambiente; NÃO foi
+possível baixar binários nem rodar Godot + MuJoCo + ONNX no Android real aqui.
+O GitHub Actions pode encontrar problemas de compilação, e essa é uma etapa
+experimental sujeita a correção.

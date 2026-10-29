@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/NPC/VaizelOfficialWeb.gd" id="1_g1"]
+
+[node name="VaizelG1" type="Node3D"]
+position = Vector3(-3, 0, 2)
+script = ExtResource("1_g1")
+
+[node name="Robot" type="Node3D" parent="."]
+
+[node name="EyeViewport" type="SubViewport" parent="."]
+disable_3d = false
+size = Vector2i(128, 72)
+render_target_update_mode = 4
+
+[node name="EyeCamera" type="Camera3D" parent="EyeViewport"]
+current = true
+fov = 92.0
+near = 0.04
+far = 80.0
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+layer = 7
+
+[node name="Status" type="Label" parent="Overlay"]
+offset_left = 12.0
+offset_top = 108.0
+offset_right = 740.0
+offset_bottom = 206.0
+text = "VAIZEL G1 | MuJoCo oficial\nAguardando runtime Web"

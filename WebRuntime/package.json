@@ -1,0 +1,15 @@
+{
+  "name": "vaizel-g1-official-web-runtime",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build --config vite.config.js",
+    "validate": "node --check g1_runtime.js && node --test tests/test_policy.mjs && python3 -m unittest discover -s tests -v"
+  },
+  "dependencies": {
+    "@mujoco/mujoco": "3.14.0",
+    "onnxruntime-web": "1.30.0"
+  },
+  "devDependencies": {"vite": "^6.3.0"}
+}
